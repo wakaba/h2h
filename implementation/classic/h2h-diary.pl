@@ -12,12 +12,13 @@ unless ($O{y}) {
 }
 $O{y} += 1900 if $O{y} < 1000;
 $O{m} = substr('0'.$O{m}, -2);
-$O{path} = $O{path} || '\\home\\local\\d\\'.$O{y}.'\\';
+$O{path} = $O{path} || '/home/wakaba/public_html/d/'.$O{y}.'/';
+    ## H2H Source directory
 
 my $basepath = $O{path};
 #$hnffiles = 'd'.$O{y}.$O{m}.'??.hnf';
 my $hnffiles = qr/^d$O{y}$O{m}(?:[0-9][0-9])\.hnf$/;
-my $output_filename = '\\home\\suika\\public_html\\d\\d'.$O{y}.$O{m}.'.ja.html';
+my $output_filename = '/home/wakaba/public_html/d/d'.$O{y}.$O{m}.'.ja.html';
 
 #open A, '| dir /B '.$basepath.$hnffiles.' > .filelist.txt';  close A;
 #open D, '.filelist.txt';  @FILELIST = <D>; close D;
@@ -32,7 +33,7 @@ my $output;
 
   my %boptions = (
     directory => 'H2H/V100/Theme/', theme => 'Fuyubi',
-    theme09_directory => '/home/local/h2h/H2H/V090/',
+    theme09_directory => 'H2H/V090/',
     theme09 => 'default',
     title => '冬様もすなる☆日記というもの',
     year => $O{y}, month => $O{m}+0,
@@ -52,14 +53,15 @@ for $fn (@FILELIST) {
 }
 
 if ($output) {
-  require '/home/suika/lib/jcode.pl';
+    use Jcode;
+  #require 'jcode.pl';
   $boptions{version} = 'H2H/1.0';
   $output = H2H->header(\%boptions).$output.
             H2H->footer(\%boptions);
   #my $s = &H2H::Page::start($title).$output.&H2H::Page::end($title);
-  jcode::convert(\$output, 'jis', 'euc');
+  #jcode::convert(\$output, 'jis', 'euc');
   open HTML, '> '.$output_filename;  binmode HTML;
-    print HTML $output;
+    print HTML Jcode->new ($output, 'euc')->jis;
   close HTML;
 }
 

@@ -71,10 +71,6 @@ package H2H::V100::headervalue;
 %hdrtemplate = (
 	%hdrtemplate,
 	TENKI	=> \&tenki, #'[Å·µ¤:%value]',
-	TAION	=> 'ÂÎ²¹: %valueÅÙ(ÀÝ»á)',
-	LUNCH	=> 'Ãë¿©: %value',
-	KEYWORD	=> '[¸°:%value]',
-	CAT	=> '[Ê¬Îà:%value]',
 	KION	=> '[µ¤²¹:%value]',
 	T1	=> '1¸Â:%value',
 	T2	=> '2¸Â:%value',
@@ -89,10 +85,10 @@ package H2H::V100::headervalue;
 
 sub tenki {
   my %o = @_;
-  $o{value} =~ s#&hare;#<img src="hare" class="xbm_font" alt="¦è" />#g;
-  $o{value} =~ s#&kumori;#<img src="kumori" class="xbm_font" alt="¦é" />#g;
-  $o{value} =~ s#&ame;#<img src="ame" class="xbm_font" alt="¦ê" />#g;
-  $o{value} =~ s#&yuki;#<img src="yuki" class="xbm_font" alt="¦ë" />#g;
+  $o{value} =~ s#&hare;#<img src="hare" alt="À²" />#g;
+  $o{value} =~ s#&kumori;#<img src="kumori" alt="ÆÞ" />#g;
+  $o{value} =~ s#&ame;#<img src="ame" alt="±«" />#g;
+  $o{value} =~ s#&yuki;#<img src="yuki" alt="Àã" />#g;
   $t = '<a href="'.$o{href}.'">'.$t.'</a>' if $o{href};
   '<span class="var '.$o{name}.'">[Å·µ¤:'.$o{value}.']</span>'."\n";
 }
@@ -113,7 +109,7 @@ sub _init {
     $self->{theme}->{day}.'Æü</h2>'."\n".
     $self->{theme}->{hdr}."\n";
   $self->{_HTML}->{end} = <<EOH;
-<form class="postmsg" method="post" action="mailto:w\@offweb.ddo.jp" enctype="text/plain" x-action="/~wakaba/sendmsg" accept-charset="iso-2022-jp">
+<form class="postmsg" method="post" action="mailto:w\@suika.fam.cx" enctype="text/plain" accept-charset="iso-2022-jp">
 <div>
 	<input type="hidden" name="subject" value="[ÅßÆü] $self->{theme}->{year}Ç¯$self->{theme}->{month}·î$self->{theme}->{day}Æü">
 	<strong class="itemname" title="µ¹¤·¤±¤ì¤Ð¡¢¡ÖÆÉ¤ó¤À¤è¡×¥Ü¥¿¥ó¤ò²¡¤·¤Æ²¼¤µ¤¤¡£´¶ÁÛ¤¬¤¢¤ë¤È¡¢Æüµ­¤ò½ñ¤¯Îå¤ß(Ææ)¤Ë¤Ê¤ê¤Þ¤¹¡£">¸æ´¶ÁÛ (¤ï¤«¤Ð¤ËÄ¾ÀÜÁ÷¤ë)</strong>:
@@ -132,12 +128,13 @@ sub _init {
 	<input type="submit" value="ÆÉ¤ó¤À¤è¡£" class="readsubmit" title="¥á¥Ã¥»¡¼¥¸ (µ­Æþ¤µ¤ì¤Æ¤¤¤ì¤Ð¡£) ¤ò¥á¥¤¥ë¤ÇÁ÷¿®¤·¤Þ¤¹¡£²¡¤·¤¿¤ê¤·¤Æ¤â²èÌÌ¤¬ÊÑ¤ï¤Ã¤¿¤ê¤Ï¶²¤é¤¯¤·¤Þ¤»¤ó¤¬¡¢ÌäÂê¤¢¤ê¤Þ¤»¤ó¡£">
 </div>
 </form>
+<!--
 <div>
 	<strong>¤´´¶ÁÛ (·Ç¼¨ÈÄ : ¸ø³«)</strong>:
-	<object type="text/html" data="/~wakaba/-temp/wiki/wiki?mycmd=lo--light;mypage=%E5%86%AC%E6%97%A5%2F%2F%E6%84%9F%E6%83%B3%2F%2F$self->{theme}->{year}%2F%2F$self->{theme}->{month}%2F%2F$self->{theme}->{day}" style="width: 98%; height: 5em; margin-left: auto; margin-right: auto; display: block; text-align: center">
-	  <a href="" class="wiki">´¶ÁÛ·Ç¼¨ÈÄ</a>
+	<object type="text/html" data="/~wakaba/-temp/wiki/wiki?mycmd=lo-&#x2E;light;mypage=%E5%86%AC%E6%97%A5%2F%2F%E6%84%9F%E6%83%B3%2F%2F$self->{theme}->{year}%2F%2F$self->{theme}->{month}%2F%2F$self->{theme}->{day}" style="width: 98%; height: 5em; margin-left: auto; margin-right: auto; display: block; text-align: center">
+	  <a href="/~wakaba/-temp/wiki/wiki?mycmd=lo-&#x2E;light;mypage=%E5%86%AC%E6%97%A5%2F%2F%E6%84%9F%E6%83%B3%2F%2F$self->{theme}->{year}%2F%2F$self->{theme}->{month}%2F%2F$self->{theme}->{day}" class="wiki">´¶ÁÛ·Ç¼¨ÈÄ</a>
 	</object>
-</div>
+</div>-->
 </div><!-- class="body" -->
 EOH
   $self->{footnotes}->{parent} = \$self;
