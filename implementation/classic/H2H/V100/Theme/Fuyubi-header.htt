@@ -1,0 +1,52 @@
+<!DOCTYPE html []>
+<html lang="ja">
+<head>
+<title>%title% (%year%年%month%月)</title>
+<meta name="author" content="わかば" title="冬様の下僕の一人(?)">
+<meta name="keywords" content="冬日, 日記, 若葉, わかば">
+<meta name="descriptions" content="%year%年%month%月の若葉の悪行の記録。">
+<link rev="made" href="mailto:w@offweb.ddo.jp">
+<link rel="contents" href="list.ja.html" title="月の一覧">
+<link rel="prev" href="d%YYYYMM-1%.ja.html" title="前月">
+<link rel="next" href="d%YYYYMM+1%.ja.html" title="翌月">
+<!--<link rel="contents" href="d%YYYY%%MM%+summary" title="話題一覧">
+<link rel="bookmark" href="d%YYYY%%MM%" title="%title% (%year%年%month%月)">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="help" href="../who?" title="若葉とは何者?">
+<link rel="copyright" href="/c/pd" title="Public Domain.">-->
+<!--link rel="stylesheet" href="style/default"-->
+<link rel="stylesheet" href="default.css"><!--
+<link rel="stylesheet alternate" href="style/fuyubi" title="画面表示用。">
+<link rel="stylesheet alternate" href="style/christmas" title="クリスマス☆, あるいは単に冬。" media="screen">
+<link rel="stylesheet alternate" href="style/sakura" title="もう春ですね。" media="screen">
+<link rel="stylesheet alternate" href="style/simple" title="無題。" media="screen">-->
+<!--link rel="stylesheet" href="/~wakaba/-temp/wiki/wiki?mycmd=TEXT_CSS;mypage=%C5%DF%C6%FC%3ACSS" type="text/css" title="無題(2)。"-->
+<link rel="stylesheet" href="fuyubi.css" type="text/css" title="無題(2)。">
+</head>
+<body>
+<h1>%title% (%year%年%month%月)</h1>
+
+<div id="intro"><!--
+[<img src="favicon" alt="冬日" class="favicon">
+  (<a href="list" rel="index" title="日記の月の一覧。">一覧</a>,
+   <a href="current" title="最新の日記。">最新</a>,
+   <a href="d%YYYY%%MM%++summary" title="今月の見出し一覧。">要約</a>,
+   <a href="../who?" title="日記書いてる若葉の正体に迫る!?">筆者</a>,
+   <a href="/search/?idxname=wakaba" title="記事を探す。">検索</a>)
+]
+[電子ニュース
+  <a href="news://suika.fam.cx/suika.robamimi" title="ニュース組 suika.robamimi (す★むの耳は驢馬の耳)">ろば耳</a>,
+]
+[関連
+[<a href="/"><img src="/favicon" class="favicon" alt="西瓜"></a>]
+[<a href="/antenna">アンテナ</a>]
+]
+[
+[Chat 
+  [<a href="../-temp/wkchat/chat1" title="人工無能む*す君が24時間あなたの相手をする Web chat 機構。">む*す茶</a>]
+  [<a href="/~rei/cgi-bin/moonlight/">月光茶</a>]
+]
+]-->
+[<a href="http://niigata.cool.ne.jp/wakaba2001/temp/suika/index.html">suika 避難所</a>
+<a href="http://niigata.cool.ne.jp/cgi-bin/tbbs.cgi?User=wakaba2001&amp;GetType=Simple">suika.robamimi 避難所</a>]
+</div>

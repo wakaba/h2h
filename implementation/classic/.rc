@@ -1,0 +1,9 @@
+
+package H2H::RC;
+
+sub init {
+  my $o = shift;
+  $o->{title} = 'test';
+}
+
+1;

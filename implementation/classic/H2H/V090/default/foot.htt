@@ -1,0 +1,11 @@
+
+<div id="person">
+</div>
+
+<div class="day">
+[冬日 (<a href="list">一覧</a>, <a href="current">最新</a>,
+ <a href="../who?">誰?</a>)]
+</div>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<html lang="ja">
+<head>
+<title>%title%</title>
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW, NOARCHIVE" />
+<link rel="stylesheet" type="text/css" media="visual, screen" 
+      href="%baseuri%diary-default.css" />
+<link rel="stylesheet" type="text/css" media="visual, screen" 
+      href="%baseuri%fuyubi-style.css" title="画面表示用。" />
+<link rel="stylesheet alternate" type="text/css" media="visual, screen" 
+      href="%baseuri%fuyubi-style-with-image.css" title="画面表示用。画像つき。" />
+<link rel="stylesheet alternate" type="text/css" media="visual, screen" 
+      href="%baseuri%rocket-style.css" title="RocketBeach で使ってた、画面表示用。" />
+<link rel="stylesheet alternate" type="text/css" media="visual, screen" 
+      href="%baseuri%black.css" title="闇(謎)。" />
+</head>
+<body>
+<h1>%title%</h1>
+

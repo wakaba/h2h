@@ -1,0 +1,80 @@
+<html lang="ja">
+<head>
+<title>%title% (%year%年%month%月%day%日)</title>
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta name="author" content="わかば"
+      title="冬様の下僕の一人(?)" />
+<meta name="keywords" content="冬日, 日記, 奥中, 中部, おくちゅ, ちゅーぶ,
+                               冬様, 若葉, 大浦, 冬樹, せっきー, 富校,
+                               進, メイル, 西瓜, 理数科" />
+<meta name="descriptions" content="理数科を仕切る冬様の下僕の一人である若葉が綴る、日々の記録(?)。" />
+<link rev="made" href="mailto:wakaba@suika.fam.cx"
+      title="筆者若葉に御意見・御感想など御寄せ下さい。" />
+<link rel="index" href="list" title="一覧" />
+<link rel="prev" href="../d%YYYYMM-1%" title="前月" />
+<link rel="next" href="../d%YYYYMM+1%" title="翌月" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<link rel="help" href="../../who?" title="若葉とは何者?" />
+<link rel="copyright" href="/c/" title="著作権等について。" />
+<link rel="stylesheet" type="text/css" media="visual, screen" 
+      href="../diary-default" />
+<link rel="stylesheet" type="text/css" media="visual, screen" 
+      href="../fuyubi-style" title="画面表示用。" />
+<link rel="stylesheet alternate" type="text/css" media="visual, screen" 
+      href="../fuyubi-style-green-day" title="緑の日特別版(謎)。" />
+<link rel="stylesheet alternate" type="text/css" media="visual, screen" 
+      href="../fuyubi-style-cool" title="Cool server で使ってた、画面表示用。" />
+<link rel="stylesheet alternate" type="text/css" media="visual, screen" 
+      href="../fuyubi-style-rb" title="RocketBeach server で使ってた、画面表示用。" />
+<!--
+<link rel="stylesheet alternate" type="text/css" media="visual, screen" 
+      href="../fuyubi-style-with-image" title="画面表示用。画像つき。" />
+<link rel="stylesheet alternate" type="text/css" media="visual, screen" 
+      href="../black" title="闇(謎)。" />
+-->
+</head>
+<body>
+<h1>%title% (%year%年%month%月%day%日)</h1>
+
+<form action="../../remind" method="post" accept-charset="junet, iso-2022-jp-3, iso-2022-jp">
+<div id="intro">
+<!-- 本来なら一覧要素 (UL とか) を使うべきですね。 -->
+[<img src="../favicon" alt="冬日" class="favicon" />
+  (<a href="../list" rel="index" title="日記の月の一覧に飛びます。">一覧</a>,
+   <a href="../current" title="最新の日記に飛びます。">最新</a>,
+   <a href="../../who?" title="んなとこで日記書いてる若葉の正体に迫る!?">筆者</a>,
+<!--   <span title="読んだ人の大体の延べ人数がこれ。"><!--#exec cmd="perl /home/wakaba/lib/counter.pl wakaba-fuyubi-%YYYY%%MM%%DD%" - - ></span>,-->
+   <a href="/search/?idxname=wakaba" title="この日記(など)から記事を探しに行きます。">検索</a>)
+]
+[電子ニュース
+  <a href="news://suika.fam.cx/suika.robamimi" title="新聞組 suika.robamimi (す★むの耳は驢馬の耳)">ろば耳</a>,
+  <a href="news://suika.fam.cx/suika.ren-ai" title="新聞組 suika.ren-ai">suika.ren-ai</a>,
+  <a href="news://suika.fam.cx/suika.test" title="新聞組 suika.test">suika.test</a>,
+]
+[<a href="/~wakaba/-temp/wiki/wiki">wiki</a>]
+[関連(しない)
+[<a href="/"><img src="/favicon" class="favicon" alt="西瓜" /></a>
+   (<a href="/admin/">管理部</a>)]
+[<a href="/antenna">アンテナ</a> (
+    <a href="/chuubu/urimikan/" 
+       title="ちゅーぶ関連 Web サイトの更新情報です。"><img src="/chuubu/urimikan/favicon" alt="瓜蜜柑" class="favicon" /></a>,
+    <a href="/okuchuu/kyuuritomikan/"
+       title="旧おくちゅ。関連 Web サイトの更新情報です。"><img src="/okuchuu/kyuuritomikan/favicon" alt="胡瓜と蜜柑" class="favicon" /></a>
+)]<!--
+[misc
+ (<a href="http://www8.tok2.com/home/kudou007/dorama/dorama.cgi">コナン物語</a>,
+ <a href="http://www8.tok2.com/home/kudou007/banana/banana.cgi">バナナ</a>)]-->
+]
+[
+[Chat 
+  [<a href="../../-temp/wkchat/chat1" title="人工無能む*す君が24時間あなたの相手をする Web chat 機構。">む*す茶</a>]
+  [<a href="http://www.revery.net/~rei/chat/chat_cgi_script/comchatx.cgi">弥剣茶</a>]
+  [<a href="http://www.revery.net/~rei/arrows/chat/">月光茶</a>]
+]
+<!--[連想ゲーム(謎) <label for="text"><!--#exec cmd="perl /home/wakaba/public_html/.getlastword.pl" - - >と言ったら</label>
+<input type="text" name="text" value="" accesskey="T" /><label for="text"><kbd>T</kbd></label>
+<input type="submit" value="OK" name="submit" accesskey="O" /><label for="submit"><kbd>O</kbd></label>]-->
+]
+</div>
+</form>

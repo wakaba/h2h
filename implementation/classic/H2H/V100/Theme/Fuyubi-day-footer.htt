@@ -1,0 +1,13 @@
+
+
+<div class="day">
+[%title% (
+ <a rel="index" href="../list">一覧</a>,
+ <a rel="prev" href="../d%YYYYMM-1%">前月</a>,
+ <a rel="next" href="../d%YYYYMM+1%">翌月</a>,
+ <a href="../current">最新</a>
+)]
+</div>
+
+</body>
+</html>

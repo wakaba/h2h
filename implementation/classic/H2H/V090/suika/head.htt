@@ -1,0 +1,12 @@
+<html lang="ja">
+<head>
+<title>%title%</title>
+<link rel="stylesheet" type="text/css" media="visual, screen" 
+      href="/~wakaba/d/diary-default" />
+<link rel="stylesheet" type="text/css" media="visual, screen" 
+      href="/~wakaba/d/fuyubi-style" title="画面表示用。" />
+<link rel="copyright" href="/c/" />
+</head>
+<body>
+<h1>%title%</h1>
+
