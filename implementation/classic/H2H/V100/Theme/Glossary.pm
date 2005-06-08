@@ -42,8 +42,9 @@ sub init_theme {
 package H2H::URI;
   $diary = 'http://suika.fam.cx/~wakaba/d/';
   $glossary{wakaba} = '/~wakaba/g/#';
-  $glossary{r} = '/chuubu/2001/2-7/g/search?subquery=%2Buri%3A%2Fchuubu%2F2001%2F2-7%2Fg%2F&idxname=root&query=';
+  $glossary{r} = '/chuubu/2001/2-7/g/';
   $glossary{person} = '_person_#';
+  $glossary_default ||= 'r';
   $glossary{_} = $glossary{$glossary_default || 'wakaba'};
   $resolve = '/uri?uri=';
   $mine = $glossary{_};
