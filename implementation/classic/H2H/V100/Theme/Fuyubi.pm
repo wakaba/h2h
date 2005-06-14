@@ -99,7 +99,7 @@ sub _init {
   my $self = shift;
   $self->{param}->{class}.= ' body';
   $self->{_HTML}->{start} = '<div%ATTR%>'.
-    '<h2><a href="/uri-res/N2L?urn:x-suika-fam-cx:'.
+    '<h2><a href="/uri-res/N2L?urn:x-suika-fam-cx:fuyubi:'.
     $self->{theme}->{year}.':'.$self->{theme}->{month}.':'.
     $self->{theme}->{day}.'" class="self">'.
     '<img src="favicon" class="favicon" alt="¡ş" '.
