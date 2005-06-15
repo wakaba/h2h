@@ -47,7 +47,7 @@ for $fn (@FILELIST) {
   if (-e $basepath.'.title'){open T,$basepath.'.title';$options{title}='';
                               while(<T>) {$options{title} .= $_} close T}
   $options{noheader} = 1; $options{nofooter} = 1;
-  open HNF, $basepath.$fn;
+  open HNF, '<', $basepath.$fn;
     $output .= H2H->toHTML(\%options, <HNF>);
   close HNF;
 }
@@ -60,9 +60,10 @@ if ($output) {
             H2H->footer(\%boptions);
   #my $s = &H2H::Page::start($title).$output.&H2H::Page::end($title);
   #jcode::convert(\$output, 'jis', 'euc');
-  open HTML, '> '.$output_filename;  binmode HTML;
+  open HTML, '>', $output_filename;  binmode HTML;
     print HTML Jcode->new ($output, 'euc')->jis;
   close HTML;
+  system 'chmod', 'go+r', $output_filename;
 }
 
 1;
