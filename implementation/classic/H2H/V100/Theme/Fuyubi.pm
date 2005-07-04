@@ -109,7 +109,8 @@ sub _init {
     $self->{theme}->{day}.'日</h2>'."\n".
     $self->{theme}->{hdr}."\n";
   $self->{_HTML}->{end} = <<EOH;
-<form class="postmsg" method="post" action="mailto:w\@suika.fam.cx" enctype="text/plain" accept-charset="iso-2022-jp">
+<form class="postmsg" method="post" action="/~wakaba/sendmsg"
+    accept-charset="iso-2022-jp utf-8">
 <div>
 	<input type="hidden" name="subject" value="[冬日] $self->{theme}->{year}年$self->{theme}->{month}月$self->{theme}->{day}日">
 	<strong class="itemname" title="宜しければ、「読んだよ」ボタンを押して下さい。感想があると、日記を書く励み(謎)になります。">御感想 (わかばに直接送る)</strong>:
@@ -122,10 +123,14 @@ sub _init {
 	<label><input type="radio" name="f" value="1">最低</label>
 	</span>
 	
-	<label class="comments">一言(もしあれば。): <input type="text" name="comment" value=""></label>
-	<label class="names">名前(よろしければ。): <input type="text" name="name" value=""></label>
-	
+<span class="line">
+	<label class="comments">一言(もしあれば。): <input type="text" name="comment" value="" size="20"></label>
+	<label class="names">名前(よろしければ。): <input type="text" name="name" value="" size="20"></label>
+
 	<input type="submit" value="読んだよ。" class="readsubmit" title="メッセージ (記入されていれば。) をメイルで送信します。押したりしても画面が変わったりは恐らくしませんが、問題ありません。">
+
+  [<a href="/~wakaba/d/d200507#d4-6">これは何?</a>]
+</span>	
 </div>
 </form>
 <!--
