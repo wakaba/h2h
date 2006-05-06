@@ -1,16 +1,12 @@
 
 =head1 NAME
 
-H2H::V100::Theme::Fuyubi
+H2H::V100::Theme::Fuyubi - H2H/1.0 Theme Implementation for "Fuyubi" diary
 
 =head1 DESCRIPTION
 
 Theme of "Fuyusama mo sunaru nikki to ifu mono",
 for H2H/1.0.
-
-=head1 ENCODING
-
-EUC-JISX0213
 
 =cut
 
@@ -63,7 +59,7 @@ package H2H::URI;
   #$glossary{r} = '/chuubu/2001/2-7/g/search/?subquery=%2Buri%3A%2Fchuubu%2F2001%2F2-7%2Fg%2F&idxname=root&query=';
   $glossary{r} = '/~wakaba/-temp/wiki/wiki?mycmd=read;mypage=';
   #$glossary{_} = $glossary{$glossary_default || 'wakaba'};
-  $glossary{_} = '/~wakaba/-temp/wiki/wiki?mycmd=read;mypage=';
+  $glossary{_} = '/~wakaba/-temp/wiki/wiki?_charset_=euc-jp;mypage=';
   $resolve = '/uri-res/N2L?';
 
 
@@ -97,41 +93,48 @@ package H2H::V100::Command::_BODY;
 
 sub _init {
   my $self = shift;
-  $self->{param}->{class}.= ' body';
-  $self->{_HTML}->{start} = '<div%ATTR%>'.
-    '<h2><a href="/uri-res/N2L?urn:x-suika-fam-cx:fuyubi:'.
-    $self->{theme}->{year}.':'.$self->{theme}->{month}.':'.
-    $self->{theme}->{day}.'" class="self">'.
-    '<img src="favicon" class="favicon" alt="◇" '.
-    'title="冬様もすなる☆日記というもの。"></a>'.
-    $self->{theme}->{year}.'年'.
-    $self->{theme}->{month}.'月'.
-    $self->{theme}->{day}.'日</h2>'."\n".
-    $self->{theme}->{hdr}."\n";
+  $self->{param}->{class}.= ' body section';
+  $self->{_HTML}->{start} = sprintf
+    '<div%%ATTR%%>
+       <h2><a href="/~wakaba/d/d%04d%02d#d%02d" class="self"
+       >%d年%d月%d日</a></h2>%s',
+    $self->{theme}->{year}, $self->{theme}->{month},
+    $self->{theme}->{day}, $self->{theme}->{year},
+    $self->{theme}->{month}, $self->{theme}->{day},
+    "\n" . $self->{theme}->{hdr} . "\n";
   $self->{_HTML}->{end} = <<EOH;
 <form class="postmsg" method="post" action="/~wakaba/sendmsg"
     accept-charset="iso-2022-jp utf-8">
-<div>
-	<input type="hidden" name="subject" value="[冬日] $self->{theme}->{year}年$self->{theme}->{month}月$self->{theme}->{day}日">
-	<strong class="itemname" title="宜しければ、「読んだよ」ボタンを押して下さい。感想があると、日記を書く励み(謎)になります。">御感想 (わかばに直接送る)</strong>:
-	
+<div class="column">
+  <div class="caption">ご感想 (著者に直接送る)</div>
+  <div class="fig-body">
+    <div class="nonpara">
+      <span class="line">
 	<span class="fs">
-	<label><input type="radio" name="f" value="5">最高!</label>
-	<label><input type="radio" name="f" value="4">良</label>
-	<label><input type="radio" name="f" value="3" checked="checked">普通</label>
-	<label><input type="radio" name="f" value="2">悪</label>
-	<label><input type="radio" name="f" value="1">最低</label>
+	<label><input type="radio" name="f" value="5" /> 最高!</label>
+	<label><input type="radio" name="f" value="4" /> 良</label>
+	<label><input type="radio" name="f" value="3" checked="checked"
+                                                      /> 普通</label>
+	<label><input type="radio" name="f" value="2" /> 悪</label>
+	<label><input type="radio" name="f" value="1" /> 最低</label>
 	</span>
-	
-<span class="line">
-	<label class="comments">一言(もしあれば。): <input type="text" name="comment" value="" size="20"></label>
-	<label class="names">名前(よろしければ。): <input type="text" name="name" value="" size="20"></label>
-
-	<input type="submit" value="読んだよ。" class="readsubmit" title="メッセージ (記入されていれば。) をメイルで送信します。押したりしても画面が変わったりは恐らくしませんが、問題ありません。">
-
-  [<a href="/~wakaba/d/d200507#d4-6">これは何?</a>]
-</span>	
-</div>
+      </span>
+      <span class="line">
+	<label class="comments">一言 <span class="weak">(もしあれば)</span>:
+          <input type="text" name="comment" value="" size="40" /></label>
+      </span>
+      <span class="line">
+	<label class="names">名前 <span class="weak">(よろしければ)</span>:
+          <input type="text" name="name" value="" size="40"></label>
+      </span>
+      <span class="line">
+	<input type="submit" value="読んだよ。" class="readsubmit"
+          title="押しても画面が変わったりは恐らくしませんが、問題ありません。" />
+        [<a href="/~wakaba/d/d200507#d4-6" rel="help">これは何?</a>]
+      </span>
+    </div><!-- nonpara -->
+  </div><!-- fig-body -->
+</div><!-- column -->
 </form>
 <!--
 <div>
@@ -169,6 +172,7 @@ sub _cat {
   '<span class="cat">['.$cat.']</span>'."\n";
 }
 
+
 package H2H::V100::Command::SUB;
 
 sub _init_value {
@@ -176,24 +180,19 @@ sub _init_value {
 }
 
 
+=head1 SEE ALSO
+
+Fuyubi-header.htt, Fuyubi-footer.htt.
+
+=head1 AUTHOR
+
+Wakaba <w@suika.fam.cx>
+
 =head1 LICENSE
 
 Public Domain.
 
-=head1 CHANGE
-
-2001-09-05  wakaba <wakaba@suika.fam.cx>
-
-	* (init_theme): Fix bug.  _BODY id => {day} (was {DD}).
-
-2001-08-14  wakaba <wakaba@suika.fam.cx>
-
-	* (Category): Its output is supported.
-
-2001-08-13  wakaba <wakaba@suika.fam.cx>
-
-	* New file.
-
 =cut
 
-1;
+1; # $Date: 2006/05/06 15:23:26 $
+

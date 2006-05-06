@@ -1,62 +1,56 @@
-<!DOCTYPE html []>
-<html lang="ja">
-<head>
+<!DOCTYPE html>
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://suika.fam.cx/~wakaba/-temp/wiki/wiki?WikiHTMLMetaProfile">
 <title>%title% (%year%年%month%月)</title>
 <meta name="author" content="わかば" title="冬様の下僕の一人(?)" />
 <meta name="keywords" content="冬日, 日記, 若葉, わかば" />
-<meta name="descriptions" content="%year%年%month%月の若葉の悪行の記録。
-" />
-<link rev="made" href="mailto:w@suika.fam.cx" title="わかば" />
-<link rel="contents" href="list" title="月の一覧" />
-<link rel="prev" href="d%YYYYMM-1%" title="前月" />
-<link rel="next" href="d%YYYYMM+1%" title="翌月" />
-<link rel="contents" href="d%YYYY%%MM%+summary" title="話題一覧" />
+<meta name="descriptions" content="%year%年%month%月の若葉の悪行の記録。" />
+<link rel="contents" href="list" title="%title%を書いた月の一覧" />
+<link rel="prev" href="d%YYYYMM-1%" title="前月の%title%" />
+<link rel="next" href="d%YYYYMM+1%" title="翌月の%title%" />
+<link rel="alternate" href="d%YYYY%%MM%.ja.atom" hreflang="ja"
+    type="application/atom+xml" title="%year%年%month%月の冬日 (Atom 供給)">
+<link rel="contents" href="d%YYYY%%MM%+summary" title="今月の話題一覧" />
 <link rel="bookmark" href="current" title="%title% (最新版)" />
-<link rel="bookmark" href="d%YYYY%%MM%" title="%title% (%year%年
-%month%月)" />
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="icon" href="favicon.png" type="image/png" />
-<link rel="help" href="/~wakaba/who?" title="若葉とは何者?" />
-<link rel="copyright" href="/c/pd" title="Public Domain.">
+<link rel="bookmark" href="d%YYYY%%MM%" title="%title% (%year%年%month%月)" />
+<link rev="made" href="/~wakaba/who?" title="著者の若葉とは何者?" />
+<link rel="copyright" href="/c/pd"
+      title="Public Domain." lang="en" xml:lang="en" />
 <link rel="stylesheet"
       href="style/default.css" type="text/css" media="all" />
-<link rel="stylesheet alternate" 
+<link rel="alternate stylesheet" 
       href="style/fuyubi.css" type="text/css" media="all"
       title="画面表示用。" />
-<link rel="stylesheet alternate"
+<link rel="alternate stylesheet"
       href="style/christmas.css" type="text/css" media="all"
       title="クリスマス☆, あるいは単に冬。" />
-<link rel="stylesheet alternate"
+<link rel="alternate stylesheet"
       href="style/sakura.css" type="text/css" media="all" 
       title="もう春ですね。" />
 <link rel="stylesheet"
       href="style/summer.css" type="text/css" media="all"
       title="夏ですが何か?" />
-<link rel="stylesheet alternate"
+<link rel="alternate stylesheet"
       href="style/simple.css" type="text/css" media="all"
       title="無題。" />
-<link rel="stylesheet alternate"
+<link rel="alternate stylesheet"
       href="fuyubi.css" type="text/css" media="all"
       title="無題(2)。" />
 </head>
 <body>
+<div class="header">
 <h1>%title% (%year%年%month%月)</h1>
 
-<div id="intro">
-[<img src="favicon" alt="冬日" class="favicon">
-  (<a href="list" rel="index" title="日記の月の一覧。">一覧</a>,
-   <a href="current" title="最新の日記。">最新</a>,
-   <a href="d%YYYY%%MM%++summary" title="今月の見出し一覧。">要約</a>,
-   <a href="../who?" title="日記書いてる若葉の正体に迫る!?">筆者</a>,
-   <a href="/search/?idxname=wakaba" title="記事を探す。">検索</a>)
-]
-[電子ニュース
-  <a href="news://suika.fam.cx/suika.robamimi" title="ニュース組 suika.robamimi (す★むの耳は驢馬の耳)">ろば耳</a>,
-]
-[
-[Chat 
-  [<a href="../-temp/wkchat/chat1" title="人工無能む*す君が24時間あなたの相手をする Web chat 機構。">む*す茶</a>]
-  [<a href="/~rei/cgi-bin/moonlight/">月光茶</a>]
-]
-]
+<div id="intro" class="navigation">
+[%title%
+  (<a href="list" rel="contents" title="%title%の月の一覧。">一覧</a>,
+   <a href="current" title="最新の日記。">最新</a>
+   (<a href="current.html" type="text/html"
+      title="最新の日記 (HTML)" lang="en">HTML</a>,
+    <a href="current.ja.atom" hreflang="ja" type="application/atom+xml"
+      title="最新の日記 (Atom)" lang="en">Atom</a>),
+   <a href="../who?" rev="made">筆者</a>,
+   <a href="/search/?idxname=wakaba" title="記事を探す。">検索</a>)]
 </div>
+
+</div><!-- header -->

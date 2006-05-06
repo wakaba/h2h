@@ -1,5 +1,20 @@
+2005-07-19  Wakaba  <wakaba@suika.fam.cx>
+
+	* Fuyubi.pm: Markups updated to the new style.
+
 2003-07-21  Wakaba  <wakaba@suika.fam.cx>
 
 	* Fuyubi.pm: Update to latest environment.
 	* Fuyubi-header.htt: Ditto.
 
+2001-09-05  Wakaba <wakaba@suika.fam.cx>
+
+	* Fuyubi.pm (init_theme): Fix bug.  _BODY id => {day} (was {DD}).
+
+2001-08-14  Wakaba <wakaba@suika.fam.cx>
+
+	* Fuyubi.pm (Category): Its output is supported.
+
+2001-08-13  Wakaba <wakaba@suika.fam.cx>
+
+	* Fuyubi.pm New file.
