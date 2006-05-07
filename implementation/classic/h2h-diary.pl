@@ -19,6 +19,7 @@ my $basepath = $O{path};
 #$hnffiles = 'd'.$O{y}.$O{m}.'??.hnf';
 my $hnffiles = qr/^d$O{y}$O{m}(?:[0-9][0-9])\.hnf$/;
 my $output_filename = '/home/wakaba/public_html/d/d'.$O{y}.$O{m}.'.ja.html';
+my $output_filename2 = '/home/wakaba/public_html/d/current.ja.html';
 
 #open A, '| dir /B '.$basepath.$hnffiles.' > .filelist.txt';  close A;
 #open D, '.filelist.txt';  @FILELIST = <D>; close D;
@@ -60,10 +61,15 @@ if ($output) {
             H2H->footer(\%boptions);
   #my $s = &H2H::Page::start($title).$output.&H2H::Page::end($title);
   #jcode::convert(\$output, 'jis', 'euc');
+  my $data = Jcode->new ($output, 'euc')->jis;
   open HTML, '>', $output_filename;  binmode HTML;
-    print HTML Jcode->new ($output, 'euc')->jis;
+    print HTML $data;
+  close HTML;
+  open HTML, '>', $output_filename2;  binmode HTML;
+    print HTML $data;
   close HTML;
   system 'chmod', 'go+r', $output_filename;
+  system 'chmod', 'go+r', $output_filename2;
 }
 
 1;
