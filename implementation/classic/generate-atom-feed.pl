@@ -52,22 +52,6 @@ $atom_feed->set_attribute_ns ($xml, 'xml:base', $BASE_URI);
 $atom_feed->set_attribute_ns ($xml, 'xml:lang', $BASE_LANG);
 $atom_feed->title_element->text_content ($FEED_NAME);
 
-my $dir_name = $REPOSITORY_PATH.sprintf ('%04d', $year);
-my $dym = sprintf 'd%04d%02d', $year, $month;
-opendir my $dir, $dir_name or die "$0: $dir_name: $!";
-for my $file_name (sort {$a cmp $b}
-                   grep {substr ($_, 0, 7) eq $dym and
-                         substr ($_, -(6 + length ($BASE_LANG)))
-                             eq '.'.$BASE_LANG.'.atom'}
-                   readdir $dir) {
-  open my $entry_file, '<', $dir_name.'/'.$file_name
-      or die "$0: $dir_name/$file_name: $!";
-  my $entry_doc = $xp->parse ({byte_stream => $entry_file,
-                               encoding => 'utf-8'});
-  $atom_feed->append_child
-      ($feed_doc->adopt_node ($entry_doc->document_element));
-}
-close $dir;
 
 for my $author_el ($atom_feed->append_child
                        ($feed_doc->create_element_ns ($atom, 'author'))) {
@@ -91,6 +75,23 @@ for my $link_el ($atom_feed->append_child
   $link_el->type ('application/atom+xml');
   $link_el->hreflang ($BASE_LANG);
 }
+
+my $dir_name = $REPOSITORY_PATH.sprintf ('%04d', $year);
+my $dym = sprintf 'd%04d%02d', $year, $month;
+opendir my $dir, $dir_name or die "$0: $dir_name: $!";
+for my $file_name (sort {$a cmp $b}
+                   grep {substr ($_, 0, 7) eq $dym and
+                         substr ($_, -(6 + length ($BASE_LANG)))
+                             eq '.'.$BASE_LANG.'.atom'}
+                   readdir $dir) {
+  open my $entry_file, '<', $dir_name.'/'.$file_name
+      or die "$0: $dir_name/$file_name: $!";
+  my $entry_doc = $xp->parse ({byte_stream => $entry_file,
+                               encoding => 'utf-8'});
+  $atom_feed->append_child
+      ($feed_doc->adopt_node ($entry_doc->document_element));
+}
+close $dir;
 
 my $feed_file_name = $REPOSITORY_PATH.sprintf ('d%04d%02d', $year, $month)
                    . '.'.$BASE_LANG.'.atom';
