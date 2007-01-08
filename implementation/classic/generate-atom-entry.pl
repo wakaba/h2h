@@ -33,7 +33,7 @@ my $xhtml2 = q<http://www.w3.org/2002/06/xhtml2/>;
 my $h2h = q<http://suika.fam.cx/~wakaba/archive/2005/manakai/Markup/H2H/>;
 my $xmlns = q<http://www.w3.org/2000/xmlns/>;
 
-my $gls = $Message::DOM::ImplementationRegistry->get_implementation
+my $gls = $Message::DOM::ImplementationRegistry->get_dom_implementation
             ({
               $fe.'GenericLS' => '3.0',
             });
