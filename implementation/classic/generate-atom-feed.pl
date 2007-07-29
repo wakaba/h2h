@@ -2,7 +2,8 @@
 use strict;
 use utf8;
 
-use lib q</home/wakaba/work/manakai/lib>;
+use lib qw</home/wakaba/work/manakai/lib
+    /home/httpd/html/www/markup/html/whatpm>;
 
 our $REPOSITORY_PATH = q</home/wakaba/public_html/d/>;
 our $FEED_NAME = q<冬様もすなる☆日記というもの>;
@@ -14,12 +15,7 @@ our $AUTHOR_NAME = q<わかば>;
 our $AUTHOR_URI = q<http://suika.fam.cx/~wakaba/who?>;
 our $AUTHOR_MAIL = q<w@suika.fam.cx>;
 
-use Message::Markup::Atom;
-use Message::DOM::DOMFeature;
-use Message::DOM::GenericLS;
-use Message::DOM::XMLParser;
-use Message::DOM::SimpleLS;
-use Encode::EUCJP1997;
+use Message::DOM::DOMImplementation;
 
 my ($year, $month) = @ARGV;
 $year += 0;
@@ -33,17 +29,9 @@ my $xml = q<http://www.w3.org/XML/1998/namespace>;
 my $xhtml2 = q<http://www.w3.org/2002/06/xhtml2/>;
 my $h2h = q<http://suika.fam.cx/~wakaba/archive/2005/manakai/Markup/H2H/>;
 
-my $gls = $Message::DOM::ImplementationRegistry->get_dom_implementation
-            ({
-              $fe.'GenericLS' => '3.0',
-            });
-my $aimpl = $gls->get_feature ($fe.'Atom' => '1.0');
+my $impl = Message::DOM::DOMImplementation->new;
 
-my $xp = $gls->create_gls_parser ({
-           LS => '3.0',
-         });
-
-my $feed_doc = $aimpl->create_atom_feed_document
+my $feed_doc = $impl->create_atom_feed_document
                          ($FEED_TAG.$year.':'.$month.':');
 $feed_doc->dom_config->set_parameter ($cfg.'create-child-element' => 1);
 
@@ -84,10 +72,12 @@ for my $file_name (sort {$a cmp $b}
                          substr ($_, -(6 + length ($BASE_LANG)))
                              eq '.'.$BASE_LANG.'.atom'}
                    readdir $dir) {
-  open my $entry_file, '<', $dir_name.'/'.$file_name
+  open my $entry_file, '<:utf8', $dir_name.'/'.$file_name
       or die "$0: $dir_name/$file_name: $!";
-  my $entry_doc = $xp->parse ({byte_stream => $entry_file,
-                               encoding => 'utf-8'});
+  local $/ = undef;
+  my $entry_text = <$entry_file>;
+  my $entry_doc = $impl->create_document;
+  $entry_doc->inner_html ($entry_text);
   $atom_feed->append_child
       ($feed_doc->adopt_node ($entry_doc->document_element));
 }
@@ -96,14 +86,10 @@ close $dir;
 my $feed_file_name = $REPOSITORY_PATH.sprintf ('d%04d%02d', $year, $month)
                    . '.'.$BASE_LANG.'.atom';
 
-my $ls = $gls->create_gls_serializer ({
-           $fe.'SerializeDocumentInstance' => '1.0',
-         });
-
 open my $feed_file, '>', $feed_file_name
     or die "$0: $feed_file_name: $!";
   
-my $data = Encode::encode ('utf-8', $ls->write_to_string ($feed_doc));
+my $data = Encode::encode ('utf-8', $feed_doc->inner_html);
 warn qq<Write to "$feed_file_name"\n>;
 print $feed_file $data;
 close $feed_file;
