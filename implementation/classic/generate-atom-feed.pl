@@ -1,8 +1,8 @@
-#!/usr/bin/perl
+#!/usr/bin/perl5.8.7
 use strict;
 use utf8;
 
-use lib qw</home/wakaba/work/manakai/lib
+use lib qw</home/wakaba/work/manakai2/lib
     /home/httpd/html/www/markup/html/whatpm>;
 
 our $REPOSITORY_PATH = q</home/wakaba/public_html/d/>;
@@ -86,11 +86,12 @@ close $dir;
 my $feed_file_name = $REPOSITORY_PATH.sprintf ('d%04d%02d', $year, $month)
                    . '.'.$BASE_LANG.'.atom';
 
+require Encode;
+
 open my $feed_file, '>', $feed_file_name
     or die "$0: $feed_file_name: $!";
-  
-my $data = Encode::encode ('utf-8', $feed_doc->inner_html);
 warn qq<Write to "$feed_file_name"\n>;
+my $data = Encode::encode ('utf-8', $feed_doc->inner_html);
 print $feed_file $data;
 close $feed_file;
 system 'chmod', 'go+r', $feed_file_name;
