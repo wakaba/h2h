@@ -16,4 +16,7 @@ RemoveHandler cgi-script
 AddCharset windows-31j .cgi
 AddType text/plain .cgi
 
+AddLanguage ja .ja
+ReadmeName README
+
 ## License: Public Domain.
