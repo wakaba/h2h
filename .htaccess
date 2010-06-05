@@ -1,0 +1,14 @@
+Options Indexes
+AddDefaultCharset iso-2022-jp
+
+AddCharset euc-jp .pl .pm .ph 
+AddType text/perl .pl .pm .ph ## This is a willful violation to the MIME spec.
+
+<Files ~ atom>
+  ForceType "text/perl; charset=utf-8"
+</Files>
+
+AddCharset euc-jp .htt
+AddType text/plain .htt
+
+## License: Public Domain.
