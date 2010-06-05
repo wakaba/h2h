@@ -11,4 +11,9 @@ AddType text/perl .pl .pm .ph ## This is a willful violation to the MIME spec.
 AddCharset euc-jp .htt
 AddType text/plain .htt
 
+RemoveHandler cgi-script
+
+AddCharset windows-31j .cgi
+AddType text/plain .cgi
+
 ## License: Public Domain.

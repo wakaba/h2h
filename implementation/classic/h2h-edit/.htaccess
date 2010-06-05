@@ -1,8 +1,0 @@
-
-  AuthType Basic
-  AuthName H2H
-  AuthUserFile /home/wakaba/.htpasswd
-  AuthGroupFile /home/wakaba/.htgroup
-  require valid-user
-  
-  Options +Indexes +FollowSymLinks
