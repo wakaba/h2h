@@ -1,28 +1,45 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use Path::Class;
+use lib file (__FILE__)->dir->stringify;
+use Getopt::Long;
 
 #$H2H::themepath	= '/home/local/h2h/H2H/';
 require H2H;
 #require $H2H::themepath.'default/theme.ph';
 
+my $DiaryFileDirectoryName;
+my $DiaryTitle = 'My Diary';
+my $DiaryTheme = 'Fuyubi';
+GetOptions (
+  'diary-file-directory-name=s' => \$DiaryFileDirectoryName,
+  'diary-title=s' => \$DiaryTitle,
+  'diary-theme=s' => \$DiaryTheme,
+) or die "Options broken";
+
 my %O;
 ($O{y}, $O{m}, $O{path}) = @ARGV;
 
+my $rev;
 unless ($O{y}) {
   (undef, undef, undef, undef, $O{m}, $O{y}) = localtime;  $O{m}++;
   $rev = 1;
 }
 $O{y} += 1900 if $O{y} < 1000;
 $O{m} = substr('0'.$O{m}, -2);
-$O{path} = $O{path} || '/home/wakaba/public_html/d/'.$O{y}.'/';
-    ## H2H Source directory
 
-my $basepath = $O{path};
-#$hnffiles = 'd'.$O{y}.$O{m}.'??.hnf';
-my $hnffiles = qr/^d$O{y}$O{m}(?:[0-9][0-9])\.hnf$/;
-my $output_filename = '/home/wakaba/public_html/d/d'.$O{y}.$O{m}.'.ja.html';
-my $output_filename2 = '/home/wakaba/public_html/d/current.ja.html';
+my $DiaryFileD = dir ($DiaryFileDirectoryName)->absolute;
+my $DiaryFileYearD = $DiaryFileD->subdir ($O{y});
+$DiaryFileYearD->mkpath;
 
-#open A, '| dir /B '.$basepath.$hnffiles.' > .filelist.txt';  close A;
-#open D, '.filelist.txt';  @FILELIST = <D>; close D;
+chdir $DiaryFileD->stringify;
+
+my $basepath = $DiaryFileYearD->stringify . q</>;
+my $hnffiles = qr/^d\Q$O{y}$O{m}\E(?:[0-9][0-9])\.hnf$/;
+my $output_filename = $DiaryFileD->file ('d'.$O{y}.$O{m}.'.ja.html');
+my $output_filename2 = $DiaryFileD->file ('current.ja.html');
+
 opendir DIR, $basepath;
   my @FILELIST = (grep(/$hnffiles/, readdir(DIR)));
 close DIR;
@@ -32,14 +49,17 @@ else	{@FILELIST = sort {$a cmp $b} @FILELIST}
 
 my $output;
 
+  my $h2h_d = file (__FILE__)->dir;
+
   my %boptions = (
-    directory => 'H2H/V100/Theme/', theme => 'Fuyubi',
-    theme09_directory => 'H2H/V090/',
+    directory => $h2h_d->subdir ('H2H', 'V100', 'Theme')->stringify . q</>,
+    theme => $DiaryTheme,
+    theme09_directory => $h2h_d->subdir ('H2H', 'V090')->stringify . q</>,
     theme09 => 'default',
-    title => '冬様もすなる☆日記というもの',
+    title => $DiaryTitle,
     year => $O{y}, month => $O{m}+0,
   );
-for $fn (@FILELIST) {
+for my $fn (@FILELIST) {
   my %options = (%boptions);
   $fn =~ tr/\x0D\x0A//d;
   if ($fn =~ /(\d{4})(\d\d)(\d\d)/) {
@@ -68,8 +88,10 @@ if ($output) {
   open HTML, '>', $output_filename2;  binmode HTML;
     print HTML $data;
   close HTML;
-  system 'chmod', 'go+r', $output_filename;
-  system 'chmod', 'go+r', $output_filename2;
+
+  system 'git', 'add',
+      file ($output_filename)->relative ($DiaryFileD)->stringify,
+      file ($output_filename2)->relative ($DiaryFileD)->stringify;
 }
 
 1;

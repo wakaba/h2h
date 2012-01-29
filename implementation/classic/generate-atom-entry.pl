@@ -1,21 +1,33 @@
 #!/usr/bin/perl
 use strict;
-use utf8;
-
-use lib qw</home/wakaba/work/manakai/lib
-    /home/httpd/html/www/markup/html/whatpm>;
-
-our $REPOSITORY_PATH = q</home/wakaba/public_html/d/>;
-our $FEED_TAG = q<urn:x-suika-fam-cx:fuyubi:>;
-our $BASE_URI = q<http://suika.fam.cx/~wakaba/d/>;
-our $BASE_LANG = 'ja';
-our $AUTHOR_NAME = q<わかば>;
-our $AUTHOR_URI = q<http://suika.fam.cx/~wakaba/who?>;
-our $AUTHOR_MAIL = q<w@suika.fam.cx>;
-
+use warnings;
+use Path::Class;
+use lib file (__FILE__)->dir->parent->parent->subdir ('modules', 'manakai', 'lib')->stringify;
+use lib file (__FILE__)->dir->parent->parent->subdir ('modules', 'charclass', 'lib')->stringify;
 use Message::DOM::DOMImplementation;
 use Whatpm::H2H;
+use Encode;
 use Encode::EUCJP1997;
+use Getopt::Long;
+
+our $REPOSITORY_PATH = q<path/to/files/>;
+our $FEED_TAG = q<data:,tag-url-prefix:>;
+our $BASE_URI = q</url/path/of/diary/>;
+our $BASE_LANG = 'und';
+our $AUTHOR_NAME = q<Author San>;
+our $AUTHOR_URI = q<http://example/url/of/author>;
+our $AUTHOR_MAIL = q<author-san@example.com>;
+
+GetOptions (
+  'diary-file-directory-name=s' => \$REPOSITORY_PATH,
+  'feed-tag-url-prefix=s' => \$FEED_TAG,
+  'base-url=s' => \$BASE_URI,
+  'base-lang=s' => \$BASE_LANG,
+  'author-name=s' => \$AUTHOR_NAME,
+  'author-url=s' => \$AUTHOR_URI,
+  'author-mail-addr=s' => \$AUTHOR_MAIL,
+) or die "Broken input";
+$AUTHOR_NAME = decode 'utf-8', $AUTHOR_NAME if defined $AUTHOR_NAME;
 
 my ($year, $month, $day) = @ARGV;
 $year += 0;
@@ -33,8 +45,11 @@ my $xmlns = q<http://www.w3.org/2000/xmlns/>;
 
 my $impl = Message::DOM::DOMImplementation->new;
 
-my $base_file_name = $REPOSITORY_PATH.sprintf ('%04d/d%04d%02d%02d',
-                                               $year, $year, $month, $day);
+my $base_d = dir ($REPOSITORY_PATH)->subdir ($year)->absolute;
+my $base_file_name = $base_d->file
+    (sprintf 'd%04d%02d%02d', $year, $month, $day)->stringify;
+
+chdir $base_d->stringify;
 
 my $h2h_data = '';
 if (-f $base_file_name.'.hnf') {
@@ -52,8 +67,8 @@ my $i = 0;
 for my $section (@{$h2h_doc->get_elements_by_tag_name_ns ($html, 'body')
                            ->[0]->child_nodes}) {
   next if $section->node_type != $section->ELEMENT_NODE;
-  next if $section->local_name != 'section';
-  next if $section->namespace_uri != $html;
+  next if $section->local_name ne 'section';
+  next if $section->namespace_uri ne $html;
 
   $i++;
 
@@ -139,8 +154,6 @@ for my $section (@{$h2h_doc->get_elements_by_tag_name_ns ($html, 'body')
   warn qq<Write to "$entry_file_name"\n>;
   print $entry_file Encode::encode ('utf-8', $atom_doc->inner_html);
   close $entry_file;
-  system 'chmod', 'go+r', $entry_file_name;
-  $? == -1 and die "$0: chmod $entry_file_name: $!";
+
+  system 'git', 'add', file ($entry_file_name)->relative ($base_d)->stringify;
 }
-
-

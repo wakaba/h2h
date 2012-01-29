@@ -1,21 +1,38 @@
-#!/usr/bin/perl5.8.7
+#!/usr/bin/perl
 use strict;
-use utf8;
-
-use lib qw</home/wakaba/work/manakai2/lib
-    /home/httpd/html/www/markup/html/whatpm>;
-
-our $REPOSITORY_PATH = q</home/wakaba/public_html/d/>;
-our $FEED_NAME = q<冬様もすなる☆日記というもの>;
-our $FEED_TAG = q<urn:x-suika-fam-cx:fuyubi:>;
-our $BASE_URI = q<http://suika.fam.cx/~wakaba/d/>;
-our $BASE_LANG = 'ja';
-our $FEED_CURRENT_PATH = $REPOSITORY_PATH.'current.'.$BASE_LANG.'.atom';
-our $AUTHOR_NAME = q<わかば>;
-our $AUTHOR_URI = q<http://suika.fam.cx/~wakaba/who?>;
-our $AUTHOR_MAIL = q<w@suika.fam.cx>;
-
+use warnings;
+use Path::Class;
+use lib file (__FILE__)->dir->parent->parent->subdir ('modules', 'manakai', 'lib')->stringify;
+use lib file (__FILE__)->dir->parent->parent->subdir ('modules', 'charclass', 'lib')->stringify;
 use Message::DOM::DOMImplementation;
+use Encode;
+use Getopt::Long;
+
+our $REPOSITORY_PATH = q<path/to/files/>;
+our $FEED_NAME = q<Test Diary>;
+our $FEED_TAG = q<data:,tag-url-prefix:>;
+our $BASE_URI = q</url/path/of/diary/>;
+our $BASE_LANG = 'und';
+our $AUTHOR_NAME = q<Author San>;
+our $AUTHOR_URI = q<http://example/url/of/author>;
+our $AUTHOR_MAIL = q<author-san@example.com>;
+
+GetOptions (
+  'diary-file-directory-name=s' => \$REPOSITORY_PATH,
+  'diary-title=s' => \$FEED_NAME,
+  'feed-tag-url-prefix=s' => \$FEED_TAG,
+  'base-url=s' => \$BASE_URI,
+  'base-lang=s' => \$BASE_LANG,
+  'author-name=s' => \$AUTHOR_NAME,
+  'author-url=s' => \$AUTHOR_URI,
+  'author-mail-addr=s' => \$AUTHOR_MAIL,
+) or die "Broken input";
+$FEED_NAME = decode 'utf-8', $FEED_NAME if defined $FEED_NAME;
+$AUTHOR_NAME = decode 'utf-8', $AUTHOR_NAME if defined $AUTHOR_NAME;
+
+my $DiaryFileD = dir ($REPOSITORY_PATH);
+
+our $FEED_CURRENT_PATH = $DiaryFileD->file ('current.'.$BASE_LANG.'.atom')->stringify;
 
 my ($year, $month) = @ARGV;
 $year += 0;
@@ -64,7 +81,7 @@ for my $link_el ($atom_feed->append_child
   $link_el->hreflang ($BASE_LANG);
 }
 
-my $dir_name = $REPOSITORY_PATH.sprintf ('%04d', $year);
+my $dir_name = $DiaryFileD->subdir ($year);
 my $dym = sprintf 'd%04d%02d', $year, $month;
 opendir my $dir, $dir_name or die "$0: $dir_name: $!";
 for my $file_name (sort {$a cmp $b}
@@ -83,10 +100,8 @@ for my $file_name (sort {$a cmp $b}
 }
 close $dir;
 
-my $feed_file_name = $REPOSITORY_PATH.sprintf ('d%04d%02d', $year, $month)
-                   . '.'.$BASE_LANG.'.atom';
-
-require Encode;
+my $feed_file_name = $DiaryFileD->file (sprintf ('d%04d%02d', $year, $month)
+                   . '.'.$BASE_LANG.'.atom');
 
 open my $feed_file, '>', $feed_file_name
     or die "$0: $feed_file_name: $!";
@@ -94,8 +109,6 @@ warn qq<Write to "$feed_file_name"\n>;
 my $data = Encode::encode ('utf-8', $feed_doc->inner_html);
 print $feed_file $data;
 close $feed_file;
-system 'chmod', 'go+r', $feed_file_name;
-$? == -1 and die "$0: chmod $feed_file_name: $!";
 
 open my $feed_file, '>', $FEED_CURRENT_PATH
     or die "$0: $FEED_CURRENT_PATH: $!";
@@ -103,6 +116,7 @@ warn qq<Write to "$FEED_CURRENT_PATH"\n>;
 print $feed_file $data;
 close $feed_file;
 
-
-
-
+chdir $DiaryFileD->stringify;
+system 'git', 'add', 
+    file ($feed_file_name)->relative ($DiaryFileD),
+    file ($FEED_CURRENT_PATH)->relative ($DiaryFileD);
