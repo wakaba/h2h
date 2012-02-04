@@ -36,6 +36,10 @@ sub _checkparent {
   $self;
 }
 
+sub permalink_url {
+  my $self = shift;
+  return '#' . $self->{param}->{id};
+} # permalink_url
 
 sub start {
   my $self = shift;
@@ -43,7 +47,7 @@ sub start {
   $self->{param}->{class} .= ' section';
   $ret .= $self->_replace_attr('<div%ATTR%>')."\n";
   $ret .= '<h3>'.
-    '<a href="#'.$self->{param}->{id}.'" class="self">'.
+    '<a href="'.$self->permalink_url.'" class="self">'.
     $self->{command}->{listitem}.'</a> '.$self->{command}->{beforetitle};
   if ($self->{param}->{link}) {
     $self->{text} = $self->__html_ent($self->{text} || $self->{param}->{link});

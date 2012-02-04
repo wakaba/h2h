@@ -166,6 +166,12 @@ sub _cat {
   '<span class="cat">['.$cat.']</span>'."\n";
 }
 
+sub permalink_url {
+  my $self = shift;
+  return sprintf '/~wakaba/d/d%04d%02d#%s',
+      $self->{theme}->{year}, $self->{theme}->{month},
+      $self->{param}->{id};
+} # permalink_url
 
 package H2H::V100::Command::SUB;
 
@@ -188,5 +194,4 @@ Public Domain.
 
 =cut
 
-1; # $Date: 2006/05/06 15:23:26 $
-
+1;
