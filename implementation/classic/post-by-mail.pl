@@ -103,6 +103,7 @@ close $diary_file;
 
 chdir $diary_year_d->stringify;
 system 'git', 'add', $diary_f->relative ($diary_year_d)->stringify;
+system 'chmod', 'go+r', $diary_f->relative ($diary_year_d)->stringify;
 
 system 'perl', $H2HImplD->file ('h2h-diary.pl')->stringify,
     $now[5] + 1900, $now[4] + 1, $now[3],

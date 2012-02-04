@@ -94,6 +94,9 @@ if ($output) {
   system 'git', 'add',
       file ($output_filename)->relative ($DiaryFileD)->stringify,
       file ($output_filename2)->relative ($DiaryFileD)->stringify;
+  system 'chmod', 'go+r',
+      file ($output_filename)->relative ($DiaryFileD)->stringify,
+      file ($output_filename2)->relative ($DiaryFileD)->stringify;
 }
 
 1;

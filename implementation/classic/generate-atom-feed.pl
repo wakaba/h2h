@@ -120,3 +120,6 @@ chdir $DiaryFileD->stringify;
 system 'git', 'add', 
     file ($feed_file_name)->relative ($DiaryFileD),
     file ($FEED_CURRENT_PATH)->relative ($DiaryFileD);
+system 'chmod', 'go+r', 
+    file ($feed_file_name)->relative ($DiaryFileD),
+    file ($FEED_CURRENT_PATH)->relative ($DiaryFileD);

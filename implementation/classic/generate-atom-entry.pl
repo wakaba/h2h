@@ -156,4 +156,5 @@ for my $section (@{$h2h_doc->get_elements_by_tag_name_ns ($html, 'body')
   close $entry_file;
 
   system 'git', 'add', file ($entry_file_name)->relative ($base_d)->stringify;
+  system 'chmod', 'go+r', file ($entry_file_name)->relative ($base_d)->stringify;
 }
