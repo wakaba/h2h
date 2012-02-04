@@ -1,12 +1,11 @@
 
 =head1 NAME
 
-H2H::V100::Theme::Fuyubi - H2H/1.0 Theme Implementation for "Fuyubi" diary
+H2H::V100::Theme::Norakuro - H2H/1.0 Theme Implementation for "Norakuro" diary
 
 =head1 DESCRIPTION
 
-Theme of "Fuyusama mo sunaru nikki to ifu mono",
-for H2H/1.0.
+Theme of "Norakuro Nikki", for H2H/1.0.
 
 =cut
 
@@ -15,9 +14,9 @@ package H2H::V100;
 sub init_theme {
   my $self = shift;
   $self->{template}->{headerfile} 
-     ||= $self->{template}->{directory}.'Fuyubi-header.htt';
+     ||= $self->{template}->{directory}.'Norakuro-header.htt';
   $self->{template}->{footerfile} 
-     ||= $self->{template}->{directory}.'Fuyubi-footer.htt';
+     ||= $self->{template}->{directory}.'Norakuro-footer.htt';
   undef $self->{template}->{headerfile} if $self->{template}->{noheader};
   undef $self->{template}->{footerfile} if $self->{template}->{nofooter};
   $self->{template}->{YYYY} = $self->{template}->{year};
@@ -110,8 +109,7 @@ sub _init {
   <div class="fig-body">
     <div class="nonpara">
       <span class="line">
-        <input type="hidden" name="date" value="$self->{theme}->{year}, $self->
-{theme}->{month}, $self->{theme}->{day}">
+        <input type="hidden" name="date" value="$self->{theme}->{year}, $self->{theme}->{month}, $self->{theme}->{day}">
 	<span class="fs">
 	<label><input type="radio" name="f" value="5" /> บวนโ!</label>
 	<label><input type="radio" name="f" value="4" /> ฮษ</label>
@@ -176,7 +174,7 @@ sub _init_value {
 
 =head1 SEE ALSO
 
-Fuyubi-header.htt, Fuyubi-footer.htt.
+Norakuro-header.htt, Norakuro-footer.htt.
 
 =head1 AUTHOR
 
@@ -188,5 +186,4 @@ Public Domain.
 
 =cut
 
-1; # $Date: 2006/05/06 15:23:26 $
-
+1;

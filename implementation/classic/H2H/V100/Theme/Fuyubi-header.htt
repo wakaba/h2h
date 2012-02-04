@@ -9,7 +9,7 @@
 <link rel="prev" href="d%YYYYMM-1%" title="前月の%title%" />
 <link rel="next" href="d%YYYYMM+1%" title="翌月の%title%" />
 <link rel="alternate" href="d%YYYY%%MM%.ja.atom" hreflang="ja"
-    type="application/atom+xml" title="%year%年%month%月の冬日 (Atom 供給)">
+    type="application/atom+xml" title="%year%年%month%月の%title% (Atom 供給)">
 <link rel="contents" href="d%YYYY%%MM%+summary" title="今月の話題一覧" />
 <link rel="bookmark" href="current" title="%title% (最新版)" />
 <link rel="bookmark" href="d%YYYY%%MM%" title="%title% (%year%年%month%月)" />

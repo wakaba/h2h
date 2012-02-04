@@ -110,8 +110,7 @@ sub _init {
   <div class="fig-body">
     <div class="nonpara">
       <span class="line">
-        <input type="hidden" name="date" value="$self->{theme}->{year}, $self->
-{theme}->{month}, $self->{theme}->{day}">
+        <input type="hidden" name="date" value="$self->{theme}->{year}, $self->{theme}->{month}, $self->{theme}->{day}">
 	<span class="fs">
 	<label><input type="radio" name="f" value="5" /> บวนโ!</label>
 	<label><input type="radio" name="f" value="4" /> ฮษ</label>
