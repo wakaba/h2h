@@ -8,10 +8,6 @@ H2H::V100::Theme::Fuyubi-day
 Theme of "Fuyusama mo sunaru nikki to ifu mono",
 for H2H/1.0.  (One day form)
 
-=head1 ENCODING
-
-EUC-JISX0213
-
 =cut
 
 package H2H::V100;
@@ -108,7 +104,7 @@ sub _init {
     $self->{theme}->{day}.'日</h2>'."\n".
     $self->{theme}->{hdr}."\n";
   $self->{_HTML}->{end} = <<EOH;
-<form class="postmsg" method="post" action="/~wakaba/sendmsg" accept-charset="junet, iso-2022-jp-3, iso-2022-jp">
+<form class="postmsg" method="post" action="/~wakaba/sendmsg" accept-charset="utf-8 iso-2022-jp">
 	<input type="hidden" name="subject" value="[冬日] $self->{theme}->{year}年$self->{theme}->{month}月$self->{theme}->{day}日" />
 	<strong class="itemname" title="宜しければ、「読んだよ」ボタンを押して下さい。感想があると、日記を書く励み(謎)になります。">御感想</strong>:
 	

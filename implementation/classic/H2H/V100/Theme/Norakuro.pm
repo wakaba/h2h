@@ -137,13 +137,6 @@ sub _init {
   </div><!-- fig-body -->
 </div><!-- column -->
 </form>
-<!--
-<div>
-	<strong>ご感想 (掲示板 : 公開)</strong>:
-	<object type="text/html" data="/~wakaba/-temp/wiki/wiki?mycmd=lo-&#x2E;light;mypage=%E5%86%AC%E6%97%A5%2F%2F%E6%84%9F%E6%83%B3%2F%2F$self->{theme}->{year}%2F%2F$self->{theme}->{month}%2F%2F$self->{theme}->{day}" style="width: 98%; height: 5em; margin-left: auto; margin-right: auto; display: block; text-align: center">
-	  <a href="/~wakaba/-temp/wiki/wiki?mycmd=lo-&#x2E;light;mypage=%E5%86%AC%E6%97%A5%2F%2F%E6%84%9F%E6%83%B3%2F%2F$self->{theme}->{year}%2F%2F$self->{theme}->{month}%2F%2F$self->{theme}->{day}" class="wiki">感想掲示板</a>
-	</object>
-</div>-->
 </div><!-- class="body" -->
 EOH
   $self->{footnotes}->{parent} = \$self;

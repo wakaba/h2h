@@ -8,10 +8,6 @@ H2H::V100::Theme::Glossary
 Theme of glossary,
 for H2H/1.0.
 
-=head1 ENCODING
-
-EUC-JISX0213
-
 =cut
 
 package H2H::V100;
