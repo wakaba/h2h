@@ -18,6 +18,7 @@
       title="Public Domain." lang="en" xml:lang="en" />
 <link rel="stylesheet"
       href="style/default.css" type="text/css" media="all" />
+<link rel=stylesheet href="style/2012.css" title="2012">
 <link rel="alternate stylesheet" 
       href="style/fuyubi.css" type="text/css" media="all"
       title="画面表示用。" />
@@ -27,7 +28,7 @@
 <link rel="alternate stylesheet"
       href="style/sakura.css" type="text/css" media="all" 
       title="もう春ですね。" />
-<link rel="stylesheet"
+<link rel="alternate stylesheet"
       href="style/summer.css" type="text/css" media="all"
       title="夏ですが何か?" />
 <link rel="alternate stylesheet"
