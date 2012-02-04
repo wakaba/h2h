@@ -4,6 +4,7 @@ use warnings;
 use Path::Class;
 use lib file (__FILE__)->dir->stringify;
 use Getopt::Long;
+use Encode;
 
 #$H2H::themepath	= '/home/local/h2h/H2H/';
 require H2H;
@@ -17,6 +18,7 @@ GetOptions (
   'diary-title=s' => \$DiaryTitle,
   'diary-theme=s' => \$DiaryTheme,
 ) or die "Options broken";
+$DiaryTitle = encode 'euc-jp', decode 'utf-8', $DiaryTitle;
 
 my %O;
 ($O{y}, $O{m}, $O{path}) = @ARGV;
