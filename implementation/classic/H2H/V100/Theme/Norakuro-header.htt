@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://suika.fam.cx/~wakaba/-temp/wiki/wiki?WikiHTMLMetaProfile">
+<title>%title% (%year%年%month%月)</title>
+<link rel="contents" href="list" title="%title%を書いた月の一覧" />
+<link rel="prev" href="d%YYYYMM-1%" title="前月の%title%" />
+<link rel="next" href="d%YYYYMM+1%" title="翌月の%title%" />
+<link rel="alternate" href="d%YYYY%%MM%.ja.atom" hreflang="ja"
+    type="application/atom+xml" title="%year%年%month%月の冬日 (Atom 供給)">
+<link rel="contents" href="d%YYYY%%MM%+summary" title="今月の話題一覧" />
+<link rel="bookmark" href="current" title="%title% (最新版)" />
+<link rel="bookmark" href="d%YYYY%%MM%" title="%title% (%year%年%month%月)" />
+<link rel="stylesheet"
+      href="/~wakaba/d/style/default.css" type="text/css" media="all" />
+<link rel="alternate stylesheet" 
+      href="/~wakaba/d/style/fuyubi.css" type="text/css" media="all"
+      title="画面表示用。" />
+<link rel="alternate stylesheet"
+      href="/~wakaba/d/style/christmas.css" type="text/css" media="all"
+      title="クリスマス☆, あるいは単に冬。" />
+<link rel="alternate stylesheet"
+      href="/~wakaba/d/style/sakura.css" type="text/css" media="all" 
+      title="もう春ですね。" />
+<link rel="stylesheet"
+      href="/~wakaba/d/style/summer.css" type="text/css" media="all"
+      title="夏ですが何か?" />
+<link rel="alternate stylesheet"
+      href="/~wakaba/d/style/simple.css" type="text/css" media="all"
+      title="無題。" />
+<link rel="alternate stylesheet"
+      href="/~wakaba/d/fuyubi.css" type="text/css" media="all"
+      title="無題(2)。" />
+</head>
+<body>
+<div class="header">
+<h1>%title% (%year%年%month%月)</h1>
+
+<div id="intro" class="navigation">
+[%title%
+  (<a href="list" rel="contents" title="%title%の月の一覧。">一覧</a>,
+   <a href="current" title="最新の日記。">最新</a>
+   (<a href="current.html" type="text/html"
+      title="最新の日記 (HTML)" lang="en">HTML</a>,
+    <a href="current.ja.atom" hreflang="ja" type="application/atom+xml"
+      title="最新の日記 (Atom)" lang="en">Atom</a>))]
+</div>
+
+</div><!-- header -->

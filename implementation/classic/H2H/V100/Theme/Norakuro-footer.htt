@@ -1,0 +1,16 @@
+<div class="footer">
+
+<div class="navigation">
+[<a href="/" title="このサーバーの首頁">/</a>
+<a href="/search/" title="このサーバーの検索">検索</a>]
+[%title%
+ (<a rel="index" href="list">一覧</a>,
+ <a rel="prev" href="d%YYYYMM-1%">前月</a>,
+ <a rel="next" href="d%YYYYMM+1%">翌月</a>,
+ <a href="current">最新</a>)]
+</div>
+
+</div>
+
+</body>
+</html>
