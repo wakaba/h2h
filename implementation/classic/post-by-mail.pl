@@ -36,6 +36,9 @@ unless (-d $DiaryDataD->stringify) {
   $DiaryDataD->mkpath;
   chdir $DiaryDataD->stringify;
   system 'git', 'init';
+} else {
+  chdir $DiaryDataD->stringify;
+  system 'git', 'pull';
 }
 
 my $now = time;
