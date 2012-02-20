@@ -41,12 +41,14 @@ unless (-d $DiaryDataD->stringify) {
   system 'git', 'pull';
 }
 
-my $now = time;
-my @now = (localtime);
+my $real_now = time;
+my @real_now = (localtime);
+my $now = time - 4*3600;
+my @now = (localtime $now);
 my $i = 0;
-my $log_file_name = $MailLogD->file ($now . '.822');
+my $log_file_name = $MailLogD->file ($real_now . '.822');
 while (-e $log_file_name) {
-  $log_file_name = $MailLogD->file ($now . '-' . ++$i . '.822');
+  $log_file_name = $MailLogD->file ($real_now . '-' . ++$i . '.822');
 }
 
 my $lmsg = '';
@@ -98,7 +100,8 @@ if (-e $diary_f) {
 }
 
 print $diary_file encode 'euc-jp',
-    sprintf qq<NEW %s (\@%02d:%02d +09:00)\x0A>, $subj, $now[2], $now[1];
+    sprintf qq<NEW %s (\@%02d:%02d +09:00)\x0A>, $subj,
+        $real_now[2] + ($real_now[3] != $now[3] ? 24 : 0), $real_now[1];
 print $diary_file encode 'euc-jp', $body;
 print $diary_file "\x0A";
 
