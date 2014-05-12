@@ -43,7 +43,7 @@ unless (-d $DiaryDataD->stringify) {
 
 my $real_now = time;
 my @real_now = (localtime);
-my $now = time - 4*3600;
+my $now = time - 5*3600;
 my @now = (localtime $now);
 my $i = 0;
 my $log_file_name = $MailLogD->file ($real_now . '.822');
@@ -72,13 +72,21 @@ my $msg = parse Message::Entity $lmsg,
                   -fill_ct => 0;
 
 my $subj = $msg->header->field ('subject');
-$subj = defined $subj ? decode 'iso-2022-jp', ''.$subj : '';
+if (defined $subj and $subj =~ /\x1B/) {
+  $subj = defined $subj ? decode 'iso-2022-jp', ''.$subj : '';
+} else {
+  $subj = defined $subj ? decode 'utf-8', ''.$subj : '';
+}
 $subj =~ s/^\s+//;
 $subj =~ s/\s+\z//;
 $subj =~ s/\s+/ /g;
 
 my $body = $msg->body;
-$body = defined $body ? decode 'iso-2022-jp', ''.$body : '';
+if (defined $body and $body =~ /\x1B/) {
+  $body = defined $body ? decode 'iso-2022-jp', ''.$body : '';
+} else {
+  $body = defined $body ? decode 'utf-8', ''.$body : '';
+}
 $body =~ tr/\x0D//d;
 $body =~ s/^\x0A+//;
 $body =~ s/\x0A+\z//;
