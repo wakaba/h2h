@@ -4,9 +4,9 @@ AddDefaultCharset iso-2022-jp
 AddCharset euc-jp .pl .pm .ph 
 AddType text/perl .pl .pm .ph ## This is a willful violation to the MIME spec.
 
-<Files ~ atom>
-  ForceType "text/perl; charset=utf-8"
-</Files>
+#<Files ~ atom>
+#  ForceType "text/perl; charset=utf-8"
+#</Files>
 
 AddCharset euc-jp .htt
 AddType text/plain .htt
@@ -18,5 +18,7 @@ AddType text/plain .cgi
 
 AddLanguage ja .ja
 ReadmeName README
+
+Redirect 410 /www/markup/h2h/modules
 
 ## License: Public Domain.
